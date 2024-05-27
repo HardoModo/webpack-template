@@ -2,6 +2,7 @@ const path = require('path');
 const toml = require('toml');
 const yaml = require('yamljs');
 const json5 = require('json5');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -9,7 +10,13 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    clean: true,
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Webpack Template',
+    }),
+  ],
   module: {
     rules: [
       {
