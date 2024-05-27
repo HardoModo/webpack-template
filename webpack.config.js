@@ -6,17 +6,28 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    clean: true,
+  entry: {
+    index: './src/index.js',
+    print: './src/print.js',
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Webpack Template',
     }),
   ],
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true,
+    publicPath: '/',
+  },
+  devtool: 'inline-source-map',
+  devServer: {
+    static: './dist',
+  },
+  optimization: {
+    runtimeChunk: 'single',
+  },
   module: {
     rules: [
       {
