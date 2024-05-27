@@ -12,7 +12,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Webpack Template',
+      template: 'src/index.html'
     }),
   ],
   output: {
@@ -27,6 +27,15 @@ module.exports = {
   },
   optimization: {
     runtimeChunk: 'single',
+    splitChunks: {
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+        },
+      },
   },
   module: {
     rules: [
